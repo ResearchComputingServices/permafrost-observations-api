@@ -28,7 +28,7 @@ def download_observation_time_temperature():
         fullpath = os.path.join(folder, location + '.txt')
         provider.write_observation_time_temperature_into_file(fullpath, location)
         print(fullpath)
-        return send_file(fullpath, as_attachment=True)
+        return send_file(fullpath, as_attachment=True, cache_timeout=-1)
     return Response(json.dumps([]), 404, mimetype="application/json")
 
 @permafrost_observations_bp.route("/download_observations_time_temperature", methods=['POST'])
@@ -54,7 +54,7 @@ def download_observation_time_temperatures():
                 provider.write_observation_time_temperature_into_file(observation_file_path, observation)
                 newzip.write(observation_file_path)
         # Send the zip file that got created back to the client.
-        return send_file(zip_path, attachment_filename='observations.zip', as_attachment=True)
+        return send_file(zip_path, attachment_filename='observations.zip', as_attachment=True, cache_timeout=-1)
     return Response(json.dumps(observations), 404, mimetype="application/json")
 
 @permafrost_observations_bp.route("/download_observation_temperature_height", methods=['GET'])
@@ -70,5 +70,5 @@ def download_observation_temperature_height():
             os.makedirs(folder)
         fullpath = os.path.join(folder, location + '.txt')
         provider.write_observation_temperature_height_into_file(fullpath, location, start_date, end_date)
-        return send_file(fullpath, as_attachment=True)
+        return send_file(fullpath, as_attachment=True, cache_timeout=-1)
     return Response(json.dumps([]), 404, mimetype="application/json")
