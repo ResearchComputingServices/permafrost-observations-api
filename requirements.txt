@@ -29,7 +29,7 @@ requires.io==0.2.6
 rsa==4.7.2
 six==1.15.0
 SQLAlchemy==1.4.10
-urllib3==1.26.4
+urllib3==1.26.5
 waitress==2.0.0
 Werkzeug==1.0.1
 xmljson==0.2.1
